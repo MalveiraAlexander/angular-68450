@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <h1>Formulario Template</h1>
+  </div>
+  <form #form="ngForm" class="row justify-content-center mt-3" (ngSubmit)="confirmationSubmit(form.form)">
+    <div class="col-12 col-md-6">
+      <div class="mb-3">
+        <label for="name_confirmation" class="form-label">Nombre completo *:</label>
+        <input [(ngModel)]="confirmation.name" required minlength="2" maxlength="255" name="name" type="text" class="form-control" id="name_confirmation" placeholder="Ej. Alfredo Roberto Rojas">
+        <validator [control]="form.form.controls['name']" name="Nombre completo"></validator>
+      </div>
+      <div class="mb-3">
+        <label for="doc_confirmation" class="form-label">Documento (DNI) *:</label>
+        <input [(ngModel)]="confirmation.document" required pattern="^\d{7,8}" name="document" type="text" class="form-control" id="doc_confirmation" placeholder="Ej. 40500333">
+        <validator [control]="form.form.controls['document']" name="Documento"></validator>
+      </div>
+      <div class="mb-3">
+        <label for="doc_confirmation" class="form-label">Celular *:</label>
+        <input [(ngModel)]="confirmation.phone" name="phone" required pattern="^(9)?(11|[2368]\d{1,2}) ?15?\d{6,8}$" type="tel" class="form-control" id="doc_confirmation" placeholder="Ej. 351856988888">
+        <validator [control]="form.form.controls['phone']" name="Celular"></validator>
+      </div>
+      <div class="mb-3">
+        <label for="email_confirmation" class="form-label">Email *:</label>
+        <input [(ngModel)]="confirmation.email" name="email" required type="email" class="form-control" id="email_confirmation" placeholder="Ej. name@example.com">
+        <validator [control]="form.form.controls['email']" name="Email"></validator>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="form-check form-switch mb-3 mt-md-4">
+        <input [(ngModel)]="confirmation.isCeliac" (ngModelChange)="setObservation(form.form)" name="isCeliac" class="form-check-input" type="checkbox" role="switch" id="celiac_confirmation">
+        <label class="form-check-label" for="celiac_confirmation">Soy Celiaco</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input [(ngModel)]="confirmation.isVegetarian" (ngModelChange)="setObservation(form.form)" name="isVegetarian" class="form-check-input" type="checkbox" role="switch" id="vegetarian_confirmation">
+        <label class="form-check-label" for="vegetarian_confirmation">Soy Vegetariano</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input [(ngModel)]="confirmation.isVegan" (ngModelChange)="setObservation(form.form)" name="isVegan" class="form-check-input" type="checkbox" role="switch" id="vegan_confirmation">
+        <label class="form-check-label" for="vegan_confirmation">Soy Vegano</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input [(ngModel)]="confirmation.isLactoseIntolerant" (ngModelChange)="setObservation(form.form)" name="isLactoseIntolerant" class="form-check-input" type="checkbox" role="switch" id="lactose_confirmation">
+        <label class="form-check-label" for="lactose_confirmation">Soy Intolerante a la lactoza</label>
+      </div>
+      <div class="form-check form-switch mb-3">
+        <input [(ngModel)]="confirmation.isAllergic" (ngModelChange)="setObservation(form.form)" name="isAllergic" class="form-check-input" type="checkbox" role="switch" id="allergic_confirmation">
+        <label class="form-check-label" for="allergic_confirmation">Soy Alergico</label>
+      </div>
+      <div class="mb-3">
+        <label for="observations_confirmation" class="form-label">Observaciones (para tener en cuenta){{!observationDisabled ? ' *' : ''}}:</label>
+        <textarea [(ngModel)]="confirmation.observations" [disabled]="observationDisabled" [required]="observationRequired" minlength="5" maxlength="500" name="observations" class="form-control" id="observations_confirmation" rows="3"></textarea>
+        <validator [control]="form.form.controls['observations']" name="Observaciones"></validator>
+      </div>
+    </div>
+    <div class="col-auto mb-4">
+      <button [disabled]="form.form.invalid" class="btn btn-success" type="submit">Confirmar!</button>
+    </div>
+  </form>
+</div>
