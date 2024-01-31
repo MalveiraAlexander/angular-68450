@@ -1,0 +1,29 @@
+<ng-container *ngFor="let item of [1,2,3]">
+  <div *ngIf="item === 1;else elseTemplate" class="container mt-5">
+    <div class="row justify-content-center h-50">
+      <ng-container>
+        <div class="row justify-content-center h-50">
+          <div class="col-6">
+            <div class="m-3 bg-danger w-50 h-50"></div>
+          </div>
+          <div class="col-6">
+            <div class="m-3 bg-success w-50 h-50"></div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <div class="container mt-5">
+    <div class="row justify-content-center h-50">
+      <div class="col-6">
+        <div class="m-3 bg-warning w-50 h-50"></div>
+      </div>
+      <div class="col-6">
+        <div class="m-3 bg-info w-50 h-50"></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
